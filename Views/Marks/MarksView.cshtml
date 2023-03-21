@@ -16,13 +16,15 @@
           @*  <th>
                 @Html.DisplayNameFor(model => model.CourseName)
             </th>*@
+            @{int io =1;}
             @foreach (var employee in (IEnumerable<Course>)ViewData["Courses"])
             {
-                <th>@employee.CourseName</th>
+                @*<th>@employee.CourseName</th>*@
+                
+                    <th>Course @io</th>
+                io++;
             }
-            <th>
-                @Html.DisplayNameFor(model => model.TotalMarks)
-            </th>
+         
             <th>
                 @Html.DisplayNameFor(model => model.Average)
             </th>
@@ -49,11 +51,12 @@
                         for (int ii = item.CoursesMarks.Count; ii < cc; ii++)
                         {
                             item.CoursesMarks.Add(0);
+                            item.CoursesNames.Add("");
                         }
                         
                     }
                 }
-                @foreach(var mark in item.CoursesMarks)
+            @*    @foreach(var mark in item.CoursesMarks)
                 {
                     if (i <= cc)
                     {
@@ -70,6 +73,26 @@
                         }
                     }
                    
+                    i++;
+                }*@
+
+                @foreach (var mark in item.CoursesNames)
+                {
+                    if (i <= cc)
+                    {
+                        if (item.CoursesNames[i] != "")
+                        {
+                            <td>
+                                @item.CoursesNames[i]
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                            </td>
+                        }
+                    }
+
                     i++;
                 }
            
